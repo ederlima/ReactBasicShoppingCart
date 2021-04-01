@@ -15,41 +15,35 @@ const generateProductList = (count) => {
     }
     return produtListAr
 }
-const productList = generateProductList(6)
 
-const shoppingContext = React.createContext({
-    productList,
+const state = {
+    productList: generateProductList(6),
     shoppingCart: []
-})
+}
+
+const ShoppingContext = React.createContext(state)
 
 const App = () => {
-
-
-    const {state, setState} = useContext(shoppingContext)
-
-    const addProduct = (product) => {
-        setState({
-            ...state,
-            shoppingCart: [...state.shoppingCart, product]
-        })
-    }
+   
     const addToCart = (product) => {
          console.log(product)
     }
 
     return (
         <>
-            <header className="app-header">
-                <h1 className="app-header__title">Shopping Cart</h1>
-            </header>
-            <main className="main-container">
-                <section className="main-container__content">
-                    <ProductList productList={productList} addToCart={addToCart} />
-                </section>
-                <aside className="main-container__aside">
-                    <ShoppingCart />
-                </aside>
-            </main>
+            <ShoppingContext.Provider value={state}>
+                <header className="app-header">
+                    <h1 className="app-header__title">Shopping Cart</h1>
+                </header>
+                <main className="main-container">
+                    <section className="main-container__content">
+                        <ProductList productList={state.productList} addToCart={addToCart} />
+                    </section>
+                    <aside className="main-container__aside">
+                        <ShoppingCart />
+                    </aside>
+                </main>
+            </ShoppingContext.Provider>
         </>
     )
 }

@@ -13,7 +13,7 @@ class ProductItem extends React.Component {
                 <p className="product-item__desc">{description}</p>
                 <p className="product-item__desc"><strong>{price}</strong></p>
                 <div className="product-item__control">
-                    <button className="btn__add lg">Add To Cart</button>
+                    <button className="btn__add lg" onClick={ () => this.props.addToCart(this.props.product) }>Add To Cart</button>
                     <div className="product-item__cart-control">
                         <button className="btn__decrease">-1</button>
                         <input className="product-item__count" type="text"/>

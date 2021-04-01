@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import './ShoppingCart.css'
 import ShoppingCarItem from './ShoppingCartItem/ShoppingCartItem'
 
+
 class ShoppingCart extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {}
-    }
+    
+    //const {state, setState} = React.useContext() //TODO APLICAR CONTEXTO
+
     render() {
         return (
             <>

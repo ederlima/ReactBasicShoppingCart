@@ -16,6 +16,8 @@ class ProductList extends React.Component {
                             this.props.productList.map(
                                 (product, key) => 
                                 <ProductItem 
+                                    addToCart={this.props.addToCart}
+                                    product={product}
                                     key={key} 
                                     productInfo={{ name: product.name, description: product.description, price: product.price, thumb: product.thumb }}
                                 />)

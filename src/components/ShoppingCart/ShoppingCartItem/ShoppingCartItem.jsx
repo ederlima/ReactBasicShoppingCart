@@ -16,4 +16,5 @@ class ShoppingCartItem extends React.Component {
     }
 }
 
+
 export default ShoppingCartItem

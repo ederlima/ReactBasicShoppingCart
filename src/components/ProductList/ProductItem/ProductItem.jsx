@@ -1,10 +1,12 @@
 import React from 'react'
+import ShoppingContext from '../../../context/Context';
 import './ProductItem.css'
 
 class ProductItem extends React.Component {
-
+    
     render() {
-        const {name, description, price, thumb} = this.props.productInfo;
+        const {name, description, price, thumb, items} = this.props.productInfo;
+        const {addToCart, cartHasProduct, removeFromCart, updateProduct} = this.context
         return(
             <>
             <div className="product-item">
@@ -13,12 +15,21 @@ class ProductItem extends React.Component {
                 <p className="product-item__desc">{description}</p>
                 <p className="product-item__desc"><strong>{price}</strong></p>
                 <div className="product-item__control">
-                    <button className="btn__add lg" onClick={ () => this.props.addToCart(this.props.product) }>Add To Cart</button>
-                    <div className="product-item__cart-control">
-                        <button className="btn__decrease">-1</button>
-                        <input className="product-item__count" type="text"/>
+                    { !cartHasProduct(this.props.productInfo) 
+                        ? <button className="btn__add lg" onClick={ () => addToCart(this.props.product) }>Add to Cart</button> 
+                        : <button className="btn__add lg" onClick={ () => removeFromCart(this.props.product) }>Remove from Cart</button> 
+                    }
+                    
+                    {
+                        
+                        <div className="product-item__cart-control">
+                        {/*TODO criar um estado pra quantidade e alterar no produto */}
+                        <button className="btn__decrease" onChange={ () => updateProduct(this.props.productInfo, this.props.productInfo.items-1)}>-1</button>
+                        <input className="product-item__count" type="number" value={items}/>
                         <button className="btn__increase">+1</button>
-                    </div>
+                        </div>
+                    }
+                    
                     
                 </div>
             </div>
@@ -26,5 +37,7 @@ class ProductItem extends React.Component {
         )
     }
 }
+
+ProductItem.contextType = ShoppingContext
 
 export default ProductItem

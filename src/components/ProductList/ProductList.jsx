@@ -6,8 +6,7 @@ import ShoppingContext from '../../context/Context'
 class ProductList extends React.Component {
 
     render() {
-        console.log(this.context)
-        const {productList, shoppingCart, addToCart} = this.context
+        const {productList, addToCart} = this.context
         return (
             <>
                 <div className="product-list">
@@ -21,7 +20,7 @@ class ProductList extends React.Component {
                                     addToCart={() => addToCart(product)}
                                     product={product}
                                     key={key} 
-                                    productInfo={{ name: product.name, description: product.description, price: product.price, thumb: product.thumb }}
+                                    productInfo={product}
                                 />)
                         }
 

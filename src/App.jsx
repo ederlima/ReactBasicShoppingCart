@@ -2,17 +2,14 @@ import React from 'react'
 import './App.css'
 import ProductList from './components/ProductList/ProductList'
 import ShoppingCart from './components/ShoppingCart/ShoppingCart'
-import ShoppingContext, { Context } from './context/Context'
+import { Context } from './context/Context'
 
 
 //const ShoppingContext = React.createContext(state)
 
 const App = () => {
    
-    const addToCart = (product) => {
-         console.log(product)
-    }
-
+    
     return (
             <Context>
                 <header className="app-header">

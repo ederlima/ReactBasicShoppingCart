@@ -1,11 +1,13 @@
 import React from 'react'
 import './ProductList.css'
 import ProductItem from './ProductItem/ProductItem'
-
+import ShoppingContext from '../../context/Context'
 
 class ProductList extends React.Component {
 
     render() {
+        console.log(this.context)
+        const {productList, shoppingCart, addToCart} = this.context
         return (
             <>
                 <div className="product-list">
@@ -13,10 +15,10 @@ class ProductList extends React.Component {
                     <p>Add items to cart</p>
                     <div className="product-list__container">
                         {
-                            this.props.productList.map(
+                            productList.map(
                                 (product, key) => 
                                 <ProductItem 
-                                    addToCart={this.props.addToCart}
+                                    addToCart={() => addToCart(product)}
                                     product={product}
                                     key={key} 
                                     productInfo={{ name: product.name, description: product.description, price: product.price, thumb: product.thumb }}
@@ -31,5 +33,7 @@ class ProductList extends React.Component {
     }
 
 }
+
+ProductList.contextType = ShoppingContext
 
 export default ProductList

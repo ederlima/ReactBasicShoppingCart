@@ -11,9 +11,9 @@ class ShoppingCart extends Component {
         return (
             <>
             <div className="shopping-cart">
-                <h4>Carrinho</h4>
+                <h4>Shopping Cart</h4>
                 <div className="shopping-cart__container">
-                    <ShoppingCarItem cartItemInfo={ { name: 'Produto 1', count: 2 } } />
+                    <ShoppingCarItem cartItemInfo={ { name: 'Product 1', count: 2 } } />
                 </div>
             </div>
             

@@ -1,27 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import './App.css'
 import ProductList from './components/ProductList/ProductList'
 import ShoppingCart from './components/ShoppingCart/ShoppingCart'
+import ShoppingContext, { Context } from './context/Context'
 
-const generateProductList = (count) => {
-    const produtListAr = []
-    for(let i = 1; i < count + 1; i++) {
-        produtListAr.push(
-            {name: `Produto ${i}`, 
-            description: `This is the awesome Product ${i}`, 
-            price: `R$ 1${i},00`, 
-            thumb: `https://picsum.photos/210/210?${i}`},
-            )
-    }
-    return produtListAr
-}
 
-const state = {
-    productList: generateProductList(6),
-    shoppingCart: []
-}
-
-const ShoppingContext = React.createContext(state)
+//const ShoppingContext = React.createContext(state)
 
 const App = () => {
    
@@ -30,21 +14,19 @@ const App = () => {
     }
 
     return (
-        <>
-            <ShoppingContext.Provider value={state}>
+            <Context>
                 <header className="app-header">
-                    <h1 className="app-header__title">Shopping Cart</h1>
-                </header>
-                <main className="main-container">
-                    <section className="main-container__content">
-                        <ProductList productList={state.productList} addToCart={addToCart} />
-                    </section>
-                    <aside className="main-container__aside">
-                        <ShoppingCart />
-                    </aside>
+                        <h1 className="app-header__title">Shopping Cart</h1>
+                    </header>
+                    <main className="main-container">
+                        <section className="main-container__content">
+                            <ProductList />
+                        </section>
+                        <aside className="main-container__aside">
+                            <ShoppingCart />
+                        </aside>
                 </main>
-            </ShoppingContext.Provider>
-        </>
+            </Context>
     )
 }
 export default App

@@ -6,7 +6,7 @@ class ProductItem extends React.Component {
     
     render() {
         const {name, description, price, thumb, items} = this.props.product;
-        const {addToCart, cartHasProduct, removeFromCart, decreaseProductItems, increaseProductItems, updateProduct} = this.context
+        const {addToCart, cartHasProduct, removeFromCart, decreaseProductItems, increaseProductItems} = this.context
         return(
             <>
             <div className="product-item">

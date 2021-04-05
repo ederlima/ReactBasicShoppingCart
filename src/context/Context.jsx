@@ -96,9 +96,9 @@ export class Context extends React.Component {
     }
     render() {
         const {productList, shoppingCart} = this.state
-        const {addToCart, cartHasProduct, removeFromCart, increaseProductItems, decreaseProductItems, updateProduct, getCartTotalItems} = this
+        const {addToCart, cartHasProduct, removeFromCart, increaseProductItems, decreaseProductItems, getCartTotalItems} = this
         return (
-            <ShoppingContext.Provider value={{ productList, shoppingCart, addToCart, cartHasProduct, removeFromCart, decreaseProductItems, increaseProductItems, updateProduct, getCartTotalItems }}>
+            <ShoppingContext.Provider value={{ productList, shoppingCart, addToCart, cartHasProduct, removeFromCart, decreaseProductItems, increaseProductItems, getCartTotalItems }}>
                 {
                     this.props.children
                 }

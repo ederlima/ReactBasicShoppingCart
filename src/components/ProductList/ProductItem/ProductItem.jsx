@@ -6,7 +6,7 @@ class ProductItem extends React.Component {
     
     render() {
         const {name, description, price, thumb, items} = this.props.product;
-        const {addToCart, cartHasProduct, removeFromCart, decreaseProductItems, increaseProductItems} = this.context
+        const {addToCart, cartHasProduct, removeFromCart, decreaseProductItems, increaseProductItems, updateProduct} = this.context
         return(
             <>
             <div className="product-item">
@@ -24,9 +24,10 @@ class ProductItem extends React.Component {
                         
                         <div className="product-item__cart-control">
                         {/*TODO criar um estado pra quantidade e alterar no produto */}
-                        <button className="btn__decrease" onClick={ () => decreaseProductItems(this.props.product, -1)}>-1</button>
-                        <input className="product-item__count" type="number" value={items} readOnly/>
-                        <button className="btn__increase" onClick={ () => increaseProductItems(this.props.product, +1) }>+1</button>
+                        <button className="btn__decrease" onClick={ () => decreaseProductItems(this.props.product)}>-1</button>
+                        <input className="product-item__count" type="number" value={items} readOnly />
+                        { /*<input className="product-item__count" type="number" value={items} onChange={ (evt) => updateProduct(this.props.product, evt.target.value) } /> */ }
+                        <button className="btn__increase" onClick={ () => increaseProductItems(this.props.product) }>+1</button>
                         </div>
                     }
                     

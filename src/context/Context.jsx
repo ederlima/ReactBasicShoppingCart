@@ -55,8 +55,8 @@ export class Context extends React.Component {
     }
     updateProduct = (product, value) => {
         if(this.getProductIndex(product) > -1) {
-            product.items += value
             let updatedCart = this.state.shoppingCart
+            //if(value) product.items = value
             updatedCart[this.getProductIndex(product)] = product
             this.setState({
                 ...this.state,
@@ -64,17 +64,19 @@ export class Context extends React.Component {
             })
         }
     }
-    increaseProductItems = (product, value) => {
+    increaseProductItems = (product) => {
         if(this.cartHasProduct(product)) {
-            this.updateProduct(product, value)
+            product.items += 1
+            this.updateProduct(product)
         } else {
             product.items = 1
             this.addToCart(product)
         }
     }
-    decreaseProductItems = (product, value) => {
+    decreaseProductItems = (product) => {
         if(product.items > 1) {
-            this.updateProduct(product, value)
+            product.items -= 1
+            this.updateProduct(product, product.items)
         } else {
             product.items = 1
             this.removeFromCart(product)
@@ -94,9 +96,9 @@ export class Context extends React.Component {
     }
     render() {
         const {productList, shoppingCart} = this.state
-        const {addToCart, cartHasProduct, removeFromCart, increaseProductItems, decreaseProductItems, getCartTotalItems} = this
+        const {addToCart, cartHasProduct, removeFromCart, increaseProductItems, decreaseProductItems, updateProduct, getCartTotalItems} = this
         return (
-            <ShoppingContext.Provider value={{ productList, shoppingCart, addToCart, cartHasProduct, removeFromCart, decreaseProductItems, increaseProductItems, getCartTotalItems }}>
+            <ShoppingContext.Provider value={{ productList, shoppingCart, addToCart, cartHasProduct, removeFromCart, decreaseProductItems, increaseProductItems, updateProduct, getCartTotalItems }}>
                 {
                     this.props.children
                 }

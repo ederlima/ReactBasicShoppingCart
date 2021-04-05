@@ -89,11 +89,14 @@ export class Context extends React.Component {
     getProduct = (productIndex) => {
         return this.state.shoppingCart[productIndex]
     }
+    getCartTotalItems = () => {
+        return this.state.shoppingCart.length > 0 ? this.state.shoppingCart.reduce( (acc, item) => acc + item.items, 0) : 0
+    }
     render() {
         const {productList, shoppingCart} = this.state
-        const {addToCart, cartHasProduct, removeFromCart, increaseProductItems, decreaseProductItems} = this
+        const {addToCart, cartHasProduct, removeFromCart, increaseProductItems, decreaseProductItems, getCartTotalItems} = this
         return (
-            <ShoppingContext.Provider value={{ productList, shoppingCart, addToCart, cartHasProduct, removeFromCart, decreaseProductItems, increaseProductItems }}>
+            <ShoppingContext.Provider value={{ productList, shoppingCart, addToCart, cartHasProduct, removeFromCart, decreaseProductItems, increaseProductItems, getCartTotalItems }}>
                 {
                     this.props.children
                 }

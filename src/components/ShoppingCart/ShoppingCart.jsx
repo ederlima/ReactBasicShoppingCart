@@ -10,12 +10,13 @@ class ShoppingCart extends Component {
 
     render() {
 
-        const {shoppingCart} = this.context
+        const {shoppingCart, getCartTotalItems} = this.context
+        const cartTotal = getCartTotalItems()
 
         return (
             <>
             <div className="shopping-cart">
-                <h4>Shopping Cart</h4>
+                <h4>Shopping Cart ({ cartTotal })</h4>
                 <div className="shopping-cart__container">
                     { shoppingCart.map( (item, key) => <ShoppingCarItem key={key} cartItemInfo={ { name: item.name, count: item.items } } />) }
                 </div>

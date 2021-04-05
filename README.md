@@ -1,3 +1,8 @@
+# Resultado do estudo
+
+O resultado do estudo pode ser visto em [ederlima.com.br](http://www.ederlima.com.br/arquivos/melishopping).
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

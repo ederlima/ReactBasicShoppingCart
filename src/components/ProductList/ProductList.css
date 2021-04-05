@@ -9,3 +9,22 @@
     column-gap: 30px;
     row-gap: 30px;
 }
+
+@media screen and (max-width:1199px) {
+    .product-list__container {
+        width: 100%;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width:992px) {
+    .product-list__container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width:575px) {
+    .product-list__container {
+        grid-template-columns: 1fr;
+    }
+}

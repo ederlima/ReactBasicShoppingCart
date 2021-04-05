@@ -20,7 +20,6 @@ class ProductList extends React.Component {
                                     addToCart={() => addToCart(product)}
                                     product={product}
                                     key={key} 
-                                    productInfo={product}
                                 />)
                         }
 

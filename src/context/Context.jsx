@@ -5,7 +5,7 @@ const generateProductList = (count) => {
     for(let i = 1; i < count + 1; i++) {
         produtListAr.push(
             {
-            name: `Produto ${i}`, 
+            name: `Product ${i}`, 
             description: `This is the awesome Product ${i}`, 
             price: `R$ 1${i},00`, 
             thumb: `https://picsum.photos/210/210?${i}`,
@@ -44,6 +44,7 @@ export class Context extends React.Component {
     removeFromCart = (product) => {
         let cartClone = [...this.state.shoppingCart]
         if(this.cartHasProduct(product)) {
+            product.items = 1
             cartClone = cartClone.filter( item => item.id !== product.id)
             this.setState({
                 ...this.state,
@@ -52,18 +53,47 @@ export class Context extends React.Component {
             console.log(`Produto ${product.name} removido!`)
         }
     }
-    updateProduct = (product, items) => {
-        const productIndex = this.state.shoppingCart.indexOf(product)
-        console.log(productIndex)
+    updateProduct = (product, value) => {
+        if(this.getProductIndex(product) > -1) {
+            product.items += value
+            let updatedCart = this.state.shoppingCart
+            updatedCart[this.getProductIndex(product)] = product
+            this.setState({
+                ...this.state,
+                shoppingCart: updatedCart
+            })
+        }
+    }
+    increaseProductItems = (product, value) => {
+        if(this.cartHasProduct(product)) {
+            this.updateProduct(product, value)
+        } else {
+            product.items = 1
+            this.addToCart(product)
+        }
+    }
+    decreaseProductItems = (product, value) => {
+        if(product.items > 1) {
+            this.updateProduct(product, value)
+        } else {
+            product.items = 1
+            this.removeFromCart(product)
+        }
     }
     cartHasProduct = (product) => {
         return this.state.shoppingCart.filter ( item => item.id === product.id ).length >= 1
     }
+    getProductIndex = (product) => {
+        return this.cartHasProduct(product) ? this.state.shoppingCart.map( obj => obj.id).indexOf(product.id) : -1
+    }
+    getProduct = (productIndex) => {
+        return this.state.shoppingCart[productIndex]
+    }
     render() {
         const {productList, shoppingCart} = this.state
-        const {addToCart, cartHasProduct, removeFromCart, updateProduct} = this
+        const {addToCart, cartHasProduct, removeFromCart, increaseProductItems, decreaseProductItems} = this
         return (
-            <ShoppingContext.Provider value={{ productList, shoppingCart, addToCart, cartHasProduct, removeFromCart, updateProduct }}>
+            <ShoppingContext.Provider value={{ productList, shoppingCart, addToCart, cartHasProduct, removeFromCart, decreaseProductItems, increaseProductItems }}>
                 {
                     this.props.children
                 }

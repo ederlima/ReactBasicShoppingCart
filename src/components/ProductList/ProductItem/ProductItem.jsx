@@ -5,8 +5,8 @@ import './ProductItem.css'
 class ProductItem extends React.Component {
     
     render() {
-        const {name, description, price, thumb, items} = this.props.productInfo;
-        const {addToCart, cartHasProduct, removeFromCart, updateProduct} = this.context
+        const {name, description, price, thumb, items} = this.props.product;
+        const {addToCart, cartHasProduct, removeFromCart, decreaseProductItems, increaseProductItems} = this.context
         return(
             <>
             <div className="product-item">
@@ -15,7 +15,7 @@ class ProductItem extends React.Component {
                 <p className="product-item__desc">{description}</p>
                 <p className="product-item__desc"><strong>{price}</strong></p>
                 <div className="product-item__control">
-                    { !cartHasProduct(this.props.productInfo) 
+                    { !cartHasProduct(this.props.product) 
                         ? <button className="btn__add lg" onClick={ () => addToCart(this.props.product) }>Add to Cart</button> 
                         : <button className="btn__add lg" onClick={ () => removeFromCart(this.props.product) }>Remove from Cart</button> 
                     }
@@ -24,9 +24,9 @@ class ProductItem extends React.Component {
                         
                         <div className="product-item__cart-control">
                         {/*TODO criar um estado pra quantidade e alterar no produto */}
-                        <button className="btn__decrease" onChange={ () => updateProduct(this.props.productInfo, this.props.productInfo.items-1)}>-1</button>
-                        <input className="product-item__count" type="number" value={items}/>
-                        <button className="btn__increase">+1</button>
+                        <button className="btn__decrease" onClick={ () => decreaseProductItems(this.props.product, -1)}>-1</button>
+                        <input className="product-item__count" type="number" value={items} readOnly/>
+                        <button className="btn__increase" onClick={ () => increaseProductItems(this.props.product, +1) }>+1</button>
                         </div>
                     }
                     

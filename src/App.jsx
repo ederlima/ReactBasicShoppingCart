@@ -19,7 +19,7 @@ const App = () => {
                         <section className="main-container__content">
                             <ProductList />
                         </section>
-                        <aside className="main-container__aside">
+                        <aside className="main-container__aside"> 
                             <ShoppingCart />
                         </aside>
                 </main>

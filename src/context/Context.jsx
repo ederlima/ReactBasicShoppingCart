@@ -56,7 +56,6 @@ export class Context extends React.Component {
     updateProduct = (product, value) => {
         if(this.getProductIndex(product) > -1) {
             let updatedCart = this.state.shoppingCart
-            //if(value) product.items = value
             updatedCart[this.getProductIndex(product)] = product
             this.setState({
                 ...this.state,
@@ -86,7 +85,7 @@ export class Context extends React.Component {
         return this.state.shoppingCart.filter ( item => item.id === product.id ).length >= 1
     }
     getProductIndex = (product) => {
-        return this.cartHasProduct(product) ? this.state.shoppingCart.map( obj => obj.id).indexOf(product.id) : -1
+        return this.state.shoppingCart.findIndex( item => item.id === product.id)
     }
     getProduct = (productIndex) => {
         return this.state.shoppingCart[productIndex]
